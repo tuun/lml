@@ -1,12 +1,22 @@
 # LML — Lightweight Markup Language
 
-LML is an indentation-based alternative to HTML. Instead of opening and closing tags with attributes crammed inline, LML uses indentation to express structure and puts every attribute on its own line. The `lmlc` compiler turns `.lml` files into standard `.html` files.
+LML is a proposed alternative to HTML, which is light-weight strictly typed, and  indentation-based. Instead of typeing every closing html tag, LML proposes that these are unnecessary, and removing them makes typing the markup easier and faster. It also hase the benefit of reduced data transfer, as less bytes travel over the wire. 
+
+The `lmlc` compiler turns `.lml` files into standard `.html` files. In a dream world, this would be implemented on a browser level, so LML files could be understood and compiled natively. For now, we have a Javascript based compiler which can detect .lml responses, and transform them in to valid HTML for rendering by the current browser.
+
+With Single Page Application(s) (SPA) dominating the world of web rendering, LML also proposes that links behave as SPA by default. When running a dev server, or builing in project mode, SPA behaviour happens automatically - no third party dependencies needed.
 
 ## Why
 
-HTML becomes hard to read and diff when elements have many attributes — especially with utility-class frameworks like Tailwind CSS, where a single element might carry twenty class names. The standard workaround (manual line-wrapping inside a tag) is fragile and inconsistent across editors and formatters.
+HTML becomes hard to read and edit when too many elements are not indented properly. By creating a strictly typed tabulated markup language that honours existing HTML elements, we can ensure clean codebases, and can forget about tracking down the correct closing </div> tag.
 
-LML solves this by separating the *tag declaration*, *attributes*, and *children* into distinct indentation levels, making structure visually unambiguous and every attribute independently diffable.
+## Install
+
+```sh
+npm install -g lmlc
+```
+
+## Side by Side
 
 **HTML:**
 ```html
@@ -56,11 +66,6 @@ class="min-h-screen flex flex-col items-center justify-between px-4 py-6 bg-gray
 - The closing `>` must align exactly with the opening `<tagname`.
 - Spaces and tabs are both accepted (tabs count as 2 spaces).
 
-## Install
-
-```sh
-npm install -g lmlc
-```
 
 Or run directly from the project after building:
 
@@ -402,28 +407,6 @@ lmlc --project src dist --apache --custom-404
 When the runtime fetches a `.lml` file and gets a 404 response, it automatically falls back to `/404.lml` and renders it. The 404 page is fetched once and cached in memory for the session.
 
 ## Real-world use cases
-
-### Static site generation with Tailwind CSS
-
-LML is particularly effective when using Tailwind, where class strings are long and change frequently. Because each attribute sits on its own line, a class change produces a single-line diff rather than a mangled line of mixed tag syntax and utilities.
-
-```
-<section
-id="hero"
-class="relative overflow-hidden bg-gradient-to-br from-indigo-600 to-purple-700 py-24 sm:py-32"
-  <div
-  class="mx-auto max-w-7xl px-6 lg:px-8 text-center"
-    <h1
-    class="text-4xl font-bold tracking-tight text-white sm:text-6xl"
-      Build faster with LML
-    >
-    <p
-    class="mt-6 text-lg leading-8 text-indigo-200"
-      Clean markup, clean diffs.
-    >
-  >
->
-```
 
 ### Email templates
 

@@ -1,0 +1,5 @@
+src/
+*.lml
+*.html
+tsconfig.json
+.gitignore

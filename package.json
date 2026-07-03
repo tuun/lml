@@ -1,15 +1,57 @@
 {
-  "name": "lmlc",
+  "name": "@tuun/lmlc",
   "version": "0.1.0",
-  "description": "Compiler for LML — a lightweight, strictly typed alternative to HTML with Automatic Server-Side Rendering (SSR) and Client-Side Hydration.",
+  "description": "Compiler and dev server for LML — an indentation-based HTML alternative that compiles to zero-dependency SPA ES modules.",
+  "keywords": [
+    "lml",
+    "html",
+    "compiler",
+    "template",
+    "spa",
+    "static-site",
+    "indentation",
+    "markup"
+  ],
   "type": "module",
   "bin": {
     "lmlc": "./dist/index.js"
   },
+  "main": "./dist/codegen.js",
+  "exports": {
+    ".": {
+      "import": "./dist/codegen.js",
+      "types": "./dist/codegen.d.ts"
+    },
+    "./parser": {
+      "import": "./dist/parser.js",
+      "types": "./dist/parser.d.ts"
+    },
+    "./runtime": {
+      "import": "./dist/runtime.js",
+      "types": "./dist/runtime.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "compile": "node dist/index.js"
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tuun/lml.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tuun/lml/issues"
+  },
+  "homepage": "https://github.com/tuun/lml#readme",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
   },
   "devDependencies": {
     "typescript": "^5.0.0"
