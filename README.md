@@ -13,7 +13,7 @@ HTML becomes hard to read and edit when too many elements are not indented prope
 ## Install
 
 ```sh
-npm install -g lmlc
+npm install -g @tuun/lmlc
 ```
 
 ## Side by Side
