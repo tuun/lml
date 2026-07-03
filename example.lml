@@ -1,0 +1,18 @@
+const syncVariable = "test inline variable";
+const asyncData = fetch('/example.json').then(r => r.json()).catch(e => "Error loading async data"); // results { content: 'Test async variable' }
+
+<lml>
+<body
+class="bg-white text-gray-900 antialiased dark:bg-gray-900 dark:text-gray-100"
+  <div
+  class="min-h-screen flex flex-col"
+    <header
+    class="bg-gray-100 dark:bg-gray-800 shadow"
+      <div
+      class="container mx-auto px-4 py-6 flex items-center justify-between"
+        The following content is loaded as an inline variable: {{ syncVariable }}
+        The following content is loaded as an async variable: {{ asyncData && asyncData.content ? asyncData.content : "loading" }}
+      >
+    >
+  >
+>

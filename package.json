@@ -1,0 +1,17 @@
+{
+  "name": "lmlc",
+  "version": "0.1.0",
+  "description": "Compiler for LML — a lightweight, strictly typed alternative to HTML with Automatic Server-Side Rendering (SSR) and Client-Side Hydration.",
+  "type": "module",
+  "bin": {
+    "lmlc": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "compile": "node dist/index.js"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
